@@ -1,0 +1,14 @@
+{
+    "name": "maximilian/orion",
+    "description": "easy custom post type and taxonomy maker",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Mohsen Walton",
+            "email": "waltonmohsen@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+    }
+}
