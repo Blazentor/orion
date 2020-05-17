@@ -1,0 +1,23 @@
+@font-face {
+    font-family: Vazir;
+    src: url("../fonts/Vazir.ttf") format('truetype');
+    src: url("../fonts/Vazir.woff") format('woff '),
+    url("../fonts/Vazir.woff2") format('woff2'),
+    url("../fonts/Vazir.eot") format('embedded-opentype');
+}
+
+body {
+    font-family: Vazir, "Arial Hebrew", Arial, sans-serif;
+}
+
+#wpbody-content, h1, h2, h3, h4, h5, h6 {
+    font-family: Vazir, "Arial Hebrew", Arial, sans-serif !important;
+}
+
+button {
+    font-family: Vazir, "Arial Hebrew", Arial, sans-serif !important;
+}
+
+.butt-close:hover {
+    color: white;
+}

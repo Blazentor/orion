@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: orion\n"
-"POT-Creation-Date: 2020-05-15 19:24+0430\n"
-"PO-Revision-Date: 2020-05-15 19:24+0430\n"
+"POT-Creation-Date: 2020-05-16 23:02+0430\n"
+"PO-Revision-Date: 2020-05-16 23:02+0430\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fa_IR\n"
@@ -21,22 +21,177 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
 
-#: includes/install-functions.php:71
+#: includes/install-functions.php:72
 msgid "easy custom post type and taxonomy"
 msgstr "ساخت پست تایپ و تاکسونومی سفارشی"
 
-#. Plugin Name of the plugin/theme
-#: includes/install-functions.php:72 includes/install-functions.php:74
-msgid "orion"
-msgstr "اوریون"
+#: includes/install-functions.php:81
+msgid "create new post type"
+msgstr "ساخت پست تایپ جدید"
 
-#: includes/install-functions.php:80
+#: includes/install-functions.php:81
 msgid "new post type"
 msgstr "پست تایپ جدید"
 
-#: views/back-view.php:4
-msgid "testaa"
-msgstr "تستاا"
+#: views/back-view.php:42
+msgid "create custom post types and taxonomy without coding!"
+msgstr "ساخت پست تایپ و تاکسونومی سفارشی بدون کد زدن!"
+
+#: views/back-view.php:51
+msgid "create post type"
+msgstr "پست تایپ جدید"
+
+#: views/back-view.php:57
+msgid "create taxonomy"
+msgstr "تاکسونمی سفارشی"
+
+#: views/back-view.php:74
+msgid "custom post type"
+msgstr "پست تایپ سفارشی"
+
+#: views/back-view.php:77
+msgid "Basic setting"
+msgstr "تنظیمات اولیه"
+
+#: views/back-view.php:84
+msgid "help"
+msgstr "راهنما"
+
+#: views/back-view.php:89
+msgid "how to create post type?"
+msgstr "چگونه یک پست تایپ جدید بسازیم؟"
+
+#: views/back-view.php:94
+msgid "close"
+msgstr "بستن"
+
+#: views/back-view.php:103
+msgid "post type name"
+msgstr "نام پست تایپ"
+
+#: views/back-view.php:107
+msgid "post type description"
+msgstr "توضیحات پست تایپ"
+
+#: views/back-view.php:113
+msgid "singular name"
+msgstr "اسم مفرد"
+
+#: views/back-view.php:117
+msgid "menu name"
+msgstr "نام  منو"
+
+#: views/back-view.php:123
+msgid "admin bar name "
+msgstr "نام در پنل ادمین "
+
+#: views/back-view.php:127 views/back-view.php:138
+msgid "dash icon name "
+msgstr "کلاس آیکون Dash "
+
+#: views/back-view.php:133
+msgid "menu position "
+msgstr "موقعیت منو"
+
+#: views/back-view.php:142
+msgid "translation (optional)"
+msgstr "ترجمه ها (اختیاری)"
+
+#: views/back-view.php:148
+msgid "add new"
+msgstr "اضافه کردن"
+
+#: views/back-view.php:152
+msgid "add new item"
+msgstr "اضافه کردن ایتم جدید"
+
+#: views/back-view.php:158
+msgid "new item"
+msgstr "ایتم جدید"
+
+#: views/back-view.php:162
+msgid "edit item"
+msgstr "ویرایش ایتم"
+
+#: views/back-view.php:168
+msgid "view item"
+msgstr "مشاهده جدید"
+
+#: views/back-view.php:172
+msgid "all item"
+msgstr "همه ایتم ها"
+
+#: views/back-view.php:178
+msgid "search item"
+msgstr "جستجوی ایتم"
+
+#: views/back-view.php:182
+msgid "not found"
+msgstr "پیدا نشد"
+
+#: views/back-view.php:188
+msgid "featured image"
+msgstr "تصویر شاخص"
+
+#: views/back-view.php:192
+msgid "set featured image"
+msgstr "گذاشتن تصویر شاخص"
+
+#: views/back-view.php:198
+msgid "remove featured image"
+msgstr "حذف تصویر شاخص"
+
+#: views/back-view.php:202
+msgid "use featured image"
+msgstr "استفاده از تصویر شاخص"
+
+#: views/back-view.php:208
+msgid "item list"
+msgstr "لیست ایتم ها"
+
+#: views/back-view.php:212
+msgid "filter item list"
+msgstr "فیلتر لیست ایتم"
+
+#: views/back-view.php:216
+msgid "advanced setting"
+msgstr "تنظیمات پیشرفته"
+
+#: views/back-view.php:225
+msgid "public post type"
+msgstr "پست تایپ عمومی"
+
+#: views/back-view.php:231
+msgid "show ui"
+msgstr "نمایش رابط کاربری (UI)"
+
+#: views/back-view.php:237
+msgid "show in menu"
+msgstr "نمایش در منو"
+
+#: views/back-view.php:243
+msgid "show in admin"
+msgstr "نمایش در پنل ادمین"
+
+#: views/back-view.php:249
+msgid "show in navigation"
+msgstr "نمایش در مسیر"
+
+#: views/back-view.php:255
+msgid "exclude From Search"
+msgstr "در جستجوی سایت نمایش داده نشود"
+
+#: views/back-view.php:261 views/back-view.php:271
+msgid "public query"
+msgstr "Query عمومی"
+
+#: views/back-view.php:265
+msgid "supports"
+msgstr "پشتیبانی"
+
+#. Plugin Name of the plugin/theme
+msgid "orion"
+msgstr "اوریون"
 
 #. Plugin URI of the plugin/theme
 msgid "https://www.yourwebsiteurl.com/"
@@ -53,3 +208,6 @@ msgstr ""
 #. Author URI of the plugin/theme
 msgid "http://dalaran-team.ir"
 msgstr ""
+
+#~ msgid "testaa"
+#~ msgstr "تستاا"

@@ -2,20 +2,28 @@
 /**
  * @since v1.0
  */
+isDefined();
 /**
  * create orion database for saving custom post types
  */
-function install_orion_db() {
-	global $wpdb;
-	global $orion_db_version;
-	// table name
-	$table_name = $wpdb->prefix . 'orionNebu';
-	// table collate
-	$charset_collate = $wpdb->get_charset_collate();
-
-	$sql = "CREATE TABLE $table_name (
+function install_orion_db()
+{
+    global $wpdb;
+    global $orion_db_version;
+    // table name
+    $table_name = $wpdb->prefix . 'orionNebu';
+    // table collate
+    $charset_collate = $wpdb->get_charset_collate();
+    /**
+     * check for table exists
+     */
+    if ($wpdb->get_var('SHOW TABLES LIKE "' . $table_name . '"')) {
+        return;
+    } else {
+        $sql = "CREATE TABLE $table_name (
     id mediumint(9) NOT NULL AUTO_INCREMENT,
 	customName text NOT NULL,
+	dashiIcon varchar(100) not NULL,
 	description text NOT NULL,
 	singName varchar(254) NOT NULL,
 	menuName varchar(254) NOT NULL,
@@ -41,7 +49,6 @@ function install_orion_db() {
 	showInNav boolean NOT NULL,
 	excFromSearch boolean NOT NULL,
 	pubQuery boolean NOT NULL,
-	CapaType boolean NOT NULL,
 	menuPos INT(11) NOT NULL,
 	hierarchical boolean DEFAULT 0 NOT null,
 	taxonomies text NOT NULL,
@@ -49,53 +56,59 @@ function install_orion_db() {
 	PRIMARY KEY (id)
 	
 	)$charset_collate;";
+    }
 
-	require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
-	dbDelta( $sql );
 
-	add_option( 'orion_db_version', $orion_db_version );
+    require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
+    dbDelta($sql);
+
+    add_option('orion_db_version', $orion_db_version);
 }
 
 /**
  * call the install functions inside this function
  */
-function install_orion() {
-	install_orion_db();
+function install_orion()
+{
+    install_orion_db();
 }
 
 /**
  * plugin menu
  */
-function orion_menu() {
-	function add_orion_menu() {
-		$page_title = __( 'easy custom post type and taxonomy', 'orion' );
-		$menu_title = 'orion';
-		$capability = 'manage_options';
-		$menu_slug  = 'orion';
-		$function   = 'orion_main_menu';
-		$icon_url   = 'dashicons-welcome-add-page';
-		$position   = 25;
-		add_menu_page( $page_title, $menu_title, $capability, $menu_slug, $function, $icon_url, $position );
-		add_submenu_page( $menu_slug, $page_title, $menu_title, $capability, $menu_slug );
-		add_submenu_page( $menu_slug, __( 'create new post type', 'orion' ), __('new post type','orion'), $capability, 'orion-new-post-type', 'orion_new_post_type' );
-	}
+function orion_menu()
+{
+    function add_orion_menu()
+    {
+        $page_title = __('easy custom post type and taxonomy', 'orion');
+        $menu_title = 'orion';
+        $capability = 'manage_options';
+        $menu_slug = 'orion';
+        $function = 'orion_main_menu';
+        $icon_url = 'dashicons-welcome-add-page';
+        $position = 25;
+        add_menu_page($page_title, $menu_title, $capability, $menu_slug, $function, $icon_url, $position);
+        add_submenu_page($menu_slug, $page_title, $menu_title, $capability, $menu_slug);
+        add_submenu_page($menu_slug, __('create new post type', 'orion'), __('new post type', 'orion'), $capability, 'orion-new-post-type', 'orion_new_post_type');
+    }
 
-	/**
-	 * call the view functions
-	 * @todo: any better idea?
-	 */
-	require VIEWS_PATH;
+    /**
+     * call the view functions
+     * @todo: any better idea?
+     */
+    require VIEWS_PATH;
 
-	add_action( 'admin_menu', 'add_orion_menu' );
+    add_action('admin_menu', 'add_orion_menu');
 
 }
 
 orion_menu();
 
-function load_orion_textdomain() {
-	$path   = dirname( plugin_basename( __DIR__ ) ) . '/languages';
+function load_orion_textdomain()
+{
+    $path = dirname(plugin_basename(__DIR__)) . '/languages';
 
-	$result = load_plugin_textdomain( 'orion', false, $path );
+    load_plugin_textdomain('orion', false, $path);
 }
 
-add_action( 'init', 'load_orion_textdomain' );
+add_action('init', 'load_orion_textdomain');
