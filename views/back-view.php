@@ -5,37 +5,37 @@
 isDefined();
 
 function orion_admin_scripts( $hook_suffix ) {
-	/**
-	 * check for url suffix
-	 */
-	if ( $hook_suffix == 'toplevel_page_orion' or $hook_suffix == 'orion_page_orion-new-post-type' ) {
-		wp_register_style( 'orionMatFont', 'https://fonts.googleapis.com/icon?family=Material+Icons' );
-		wp_register_style( 'orionMat', plugin_dir_url( __DIR__ ) . 'assets/css/materialize.min.css' );
-		wp_register_script( 'orionMatJs', plugin_dir_url( __DIR__ ) . 'assets/js/materialize.min.js' );
-		wp_register_script( 'orionCustomJs', plugin_dir_url( __DIR__ ) . 'assets/js/custom.js' );
+    /**
+     * check for url suffix
+     */
+    if ( $hook_suffix == 'toplevel_page_orion' or $hook_suffix == 'orion_page_orion-new-post-type' ) {
+        wp_register_style( 'orionMatFont', 'https://fonts.googleapis.com/icon?family=Material+Icons' );
+        wp_register_style( 'orionMat', plugin_dir_url( __DIR__ ) . 'assets/css/materialize.min.css' );
+        wp_register_script( 'orionMatJs', plugin_dir_url( __DIR__ ) . 'assets/js/materialize.min.js' );
+        wp_register_script( 'orionCustomJs', plugin_dir_url( __DIR__ ) . 'assets/js/custom.js' );
 
-		wp_enqueue_style( 'orionMatFont' );
-		wp_enqueue_style( 'orionMat' );
+        wp_enqueue_style( 'orionMatFont' );
+        wp_enqueue_style( 'orionMat' );
 
-		/**
-		 * check for persian language to import custom fonts
-		 */
-		if ( get_locale() == 'fa_IR' ) {
-			wp_register_style( 'orionPersian', plugin_dir_url( __DIR__ ) . 'assets/css/style.css' );
-			wp_register_style( 'orionMatRtl', plugin_dir_url( __DIR__ ) . 'assets/css/materialize-rtl.min.css' );
-			wp_enqueue_style( 'orionMatRtl' );
-			wp_enqueue_style( 'orionPersian' );
-		}
-		wp_enqueue_script( 'orionMatJs' );
-		wp_enqueue_script( 'orionCustomJs' );
-	}
+        /**
+         * check for persian language to import custom fonts
+         */
+        if ( get_locale() == 'fa_IR' ) {
+            wp_register_style( 'orionPersian', plugin_dir_url( __DIR__ ) . 'assets/css/style.css' );
+            wp_register_style( 'orionMatRtl', plugin_dir_url( __DIR__ ) . 'assets/css/materialize-rtl.min.css' );
+            wp_enqueue_style( 'orionMatRtl' );
+            wp_enqueue_style( 'orionPersian' );
+        }
+        wp_enqueue_script( 'orionMatJs' );
+        wp_enqueue_script( 'orionCustomJs' );
+    }
 
 }
 
 add_action( 'admin_enqueue_scripts', 'orion_admin_scripts' );
 
 function orion_main_menu() {
-	?>
+    ?>
     <div class="container">
         <div class="col s12 grey lighten-3 center-align">
             <div class="section">
@@ -63,11 +63,11 @@ function orion_main_menu() {
     </div>
 
 
-	<?php
+    <?php
 }
 
 function orion_new_post_type() {
-	?>
+    ?>
     <div class="container">
         <div class="col s12 grey lighten-3 center-align">
             <div class="section">
@@ -91,12 +91,12 @@ function orion_new_post_type() {
                 </div>
                 <div class="modal-footer">
                     <a href="#" class="modal-close waves-effect waves-light btn butt-close">
-						<?php _e( 'close', 'orion' ); ?></a>
+                        <?php _e( 'close', 'orion' ); ?></a>
                 </div>
             </div>
 
             <div class="row">
-                <form class="col s12" method="post" action="">
+                <form class="col s12" method="post" action="save.php">
                     <div class="row">
                         <div class="input-field col s6">
                             <input name="customName" id="customName" type="text" class="validate" required>
@@ -134,16 +134,29 @@ function orion_new_post_type() {
                         </div>
                         <!-- taxonomy -->
                         <?php
+                        /**
+                         * get taxonomies for this post type
+                         */
                         $post_types = get_taxonomies([],'names');
-                        $posts = array();
+                        $taxonomies = array();
                         foreach ($post_types as $post_type) {
-	                        $posts[$post_type] = $post_type;
-	                        echo $post_type . '<br>';
+                            if ($post_type == "nav_menu" or $post_type == "link_category" or $post_type == "post_format"){
+                                continue;
+                            }else{
+                                $taxonomies[$post_type] = $post_type;
+                            }
                         }
                         ?>
                         <div class="input-field col s6">
-                            <input name="dashiIcon" id="dashiIcon" type="text" class="validate">
-                            <label for="dashiIcon"><?php _e( 'dash icon name ', 'orion' ); ?></label>
+                            <select name="taxonomies">
+                                <option value="" disabled selected><?php _e('Choose your option','orion'); ?></option>
+                                <?php
+                                foreach ($taxonomies as $taxonomy){
+                                    echo '<option value="'. $taxonomy .'">'. $taxonomy.'</option>';
+                                }
+                                ?>
+                            </select>
+                            <label><?php _e('select taxonomy','orion'); ?></label>
                         </div>
                     </div>
                     <div class="section">
@@ -312,12 +325,12 @@ function orion_new_post_type() {
                         </div>
                     </div>
 
-                    <button class="btn waves-effect waves-light" type="submit">ذخیره</button>
+                    <button class="btn waves-effect waves-light" type="submit"><?php _e('save','orion'); ?></button>
                 </form>
             </div>
         </div>
     </div>
-	<?php
+    <?php
 
 }
 

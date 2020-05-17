@@ -1,4 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
-    var elems = document.querySelector('#helpmodal');
-    var instances = M.Modal.init(elems);
+    const elems = document.querySelector('#helpmodal');
+    const instances = M.Modal.init(elems);
+
+    const select = document.querySelectorAll('select');
+    const ins = M.FormSelect.init(select);
 });
