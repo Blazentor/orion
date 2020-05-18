@@ -8,10 +8,11 @@ isDefined();
  */
 function install_orion_db()
 {
-    global $wpdb;
     global $orion_db_version;
+    global $wpdb;
     // table name
-    $table_name = $wpdb->prefix . 'orionNebu';
+    $table_name =  $wpdb->prefix . 'orionNebu';
+
     // table collate
     $charset_collate = $wpdb->get_charset_collate();
     /**
@@ -20,39 +21,39 @@ function install_orion_db()
     if ($wpdb->get_var('SHOW TABLES LIKE "' . $table_name . '"')) {
         return;
     } else {
-        $sql = "CREATE TABLE $table_name (
-    id mediumint(9) NOT NULL AUTO_INCREMENT,
+        $sql = "CREATE TABLE IF NOT EXISTS $table_name (
+    id mediumint NOT NULL AUTO_INCREMENT,
 	customName text NOT NULL,
-	dashiIcon varchar(100) not NULL,
-	description text NOT NULL,
-	singName varchar(254) NOT NULL,
-	menuName varchar(254) NOT NULL,
-	adminNameBar varchar(254) NOT NULL,
-	addNew varchar(254) NOT NULL,
-	addNewItem varchar(254) NOT NULL,
-	newItem varchar(254) NOT NULL,
-	editItem varchar(254) NOT NULL,
-	viewItem varchar(254) NOT NULL,
-	allItem varchar(254) NOT NULL,
-	searchItem varchar(254) NOT NULL,
-	notFound varchar(254) NOT NULL,
-	featImage varchar(254) NOT NULL,
-	setFeatImage varchar(254) NOT NULL,
-	remFeatImage varchar(254) NOT NULL,
-	useFeatImage varchar(254) NOT NULL,
-	itemsList varchar(254) NOT NULL,
-	filterItemList varchar(254) NOT NULL,
-	public boolean NOT NULL,
-	showUi boolean NOT NULL,
-	showInMenu boolean NOT NULL,
-	showInAdmin boolean NOT NULL,
-	showInNav boolean NOT NULL,
-	excFromSearch boolean NOT NULL,
-	pubQuery boolean NOT NULL,
-	menuPos INT(11) NOT NULL,
-	hierarchical boolean DEFAULT 0 NOT null,
-	taxonomies text NOT NULL,
-	supports text NOT NULL,
+	dashiIcon varchar(254) NOT NULL DEFAULT 'dashicons-welcome-view-site',
+	description varchar(254) NOT NULL DEFAULT 'simple post type',
+	singName varchar(254) NOT NULL DEFAULT 'custom post',
+	menuName varchar(254) NOT NULL DEFAULT 'custom post',
+	adminNameBar varchar(254) NOT NULL DEFAULT 'custom post',
+	addNew varchar(254) NOT NULL DEFAULT 'add new',
+	addNewItem varchar(254) NOT NULL DEFAULT 'add new item',
+	newItem varchar(254) NOT NULL DEFAULT 'new item',
+	editItem varchar(254) NOT NULL DEFAULT 'edit item',
+	viewItem varchar(254) NOT NULL DEFAULT 'view item',
+	allItem varchar(254) NOT NULL DEFAULT 'all item',
+	searchItem varchar(254) NOT NULL DEFAULT 'search item',
+	notFound varchar(254) NOT NULL DEFAULT 'not found',
+	featImage varchar(254) NOT NULL DEFAULT 'featured image',
+	setFeatImage varchar(254) NOT NULL DEFAULT 'set featured image',
+	remFeatImage varchar(254) NOT NULL DEFAULT 'remove featured image',
+	useFeatImage varchar(254) NOT NULL DEFAULT 'use featured image',
+	itemsList varchar(254) NOT NULL DEFAULT 'items list',
+	filterItemList varchar(254) NOT NULL DEFAULT 'filter item list',
+	public boolean NOT NULL DEFAULT 1,
+	showUi boolean NOT NULL DEFAULT 1,
+	showInMenu boolean NOT NULL DEFAULT 1,
+	showInAdmin boolean NOT NULL DEFAULT 1,
+	showInNav boolean NOT NULL DEFAULT 1,
+	excFromSearch boolean NOT NULL DEFAULT 0,
+	pubQuery boolean NOT NULL DEFAULT 1,
+	menuPos INT NOT NULL DEFAULT 50,
+	hierarchical boolean NOT NULL DEFAULT 1,
+	taxonomies varchar(254) NOT NULL DEFAULT 'none',
+	supports varchar(254) NOT NULL DEFAULT 'all',
 	PRIMARY KEY (id)
 	
 	)$charset_collate;";
